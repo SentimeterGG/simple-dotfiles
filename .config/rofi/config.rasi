@@ -1,0 +1,9 @@
+@theme "~/.config/rofi/simple.rasi"
+configuration {
+    location: 1;
+    xoffset: 16;
+    yoffset: 68;
+    lines: 6;
+    font: "SF Pro Text Medium 12";
+}
+

@@ -1,0 +1,60 @@
+* {
+    text-color: #ffffff;
+    background-color: transparent;
+}
+
+window {
+    background-color: rgba (0, 0, 0, 80%);
+    border: 1px;
+    border-color: #595959;
+    border-radius: 8px;
+    padding-top: 3px;
+    width: 300px;
+}
+
+listview {
+    lines: 6;
+}
+mainbox {
+    padding: 6px;
+}
+
+inputbar {
+    background-color: rgba (255, 255, 255, 10%);
+    border-radius: 8px;
+    padding: 2px;
+    margin: 0px 0px 6px 0px;
+    children: [ textbox-prompt-colon, entry ];
+}
+
+entry {
+  padding: 8px 10px;
+    placeholder: "Search...";
+}
+textbox-prompt-colon {
+  font: "JetBrainsMono Nerd Font 14";
+    str: "";
+    expand: false;
+    padding: 4px 4px 0px 8px;
+}
+listview {
+    border: 0px;
+    scrollbar: false;
+}
+
+element {
+    padding: 8px;
+    border-radius: 8px;
+}
+
+element selected {
+    background-color: rgba (255, 255, 255, 12%);
+}
+
+element-text {
+    margin: 2px;
+}
+
+element-icon {
+    margin: 0px 6px 0px 0px;
+}

@@ -59,7 +59,7 @@ A minimal i3 setup with an eww bar featuring audio, wifi, CPU, temperature, batt
 ### 1. Install packages (Arch Linux)
 
 ```bash
-sudo pacman -S i3 rofi picom kitty nvim thunar feh i3lock xss-lock dex xdo jq scrot networkmanager
+sudo pacman -S i3 rofi picom kitty nvim thunar feh i3lock xss-lock dex xdo jq scrot networkmanager dunst libnotify
 ```
 
 ```bash
