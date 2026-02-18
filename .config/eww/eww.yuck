@@ -1,0 +1,142 @@
+(defpoll TIME :interval "5s" `date +\"%H:%M\"`)
+
+(defwidget clock []
+  (box :orientation "h" :spacing "0"
+    (label :class "time" 
+           :valign 0.5 
+           :justify "center" 
+           :halign "center" 
+           :text TIME)))
+; Bar Widget
+(defwidget bar[] 
+  (box
+    :orientation "h"
+    (left)(right)
+  )
+)
+
+(defwidget left[] 
+  (box
+    :orientation "h"
+    :class "module"
+    :halign "fill"
+    (workspace)
+  )
+)
+
+(defwidget right[] 
+  (box
+    :orientation "h"
+    :class "module"
+    :halign "end"
+    :spacing 8
+    :space-evenly false
+    (sound)(wifi)(cpu)(memory)(temp)(battery)(minapp)(power)
+  )
+)
+(defvar WORKSPACE "1")
+(defwidget workspace[]
+  (label 
+    :halign "start"
+    :text "Workspace ${WORKSPACE}"
+    :class "workspace"
+  )
+)
+
+(deflisten VOL
+  :initial "100%      100%  "
+  "sh ~/.config/audio.sh")
+
+(defwidget sound[]
+  (eventbox
+    :onclick "pavucontrol &"
+    (label 
+      :class "workspace"
+      :text "${VOL}"
+    )
+  )
+)
+;; WiFi SSID poll
+(defpoll WIFI :interval "10s"
+"sh ~/.config/wifi.sh")
+
+(defwidget wifi []
+    (label
+      :class "workspace"
+      :text "${WIFI}"))
+
+(defpoll CPU :interval "30s"
+  "top -bn1 | grep 'Cpu(s)' | awk '{print int($2)}'")
+
+(defwidget cpu []
+  (label
+    :class "workspace"
+    :text "${CPU}%  "))
+
+(defpoll MEM :interval "30s"
+  "free | awk '/Mem:/ {print int($3/$2 * 100)}'")
+
+(defwidget memory []
+  (label
+    :class "workspace"
+    :text "${MEM}%  "))
+
+(defpoll TEMP :interval "30s"
+  "sensors | awk '/Package id 0:/ {print int($4)}' | tr -d '+' | tr -d '°C'")
+
+(defwidget temp []
+  (label
+    :class "workspace"
+    :text "${TEMP}°C  "))
+
+(defpoll BAT :interval "30s"
+  "cat /sys/class/power_supply/BAT0/capacity")
+
+(defwidget battery []
+  (label
+    :class "workspace"
+    :text "${BAT}%"))
+
+(defwidget power[]
+  (eventbox
+  :onclick "sh ~/.config/power-menu.sh &"
+  (label 
+    :class "power"
+    :text ""
+  ))
+)
+(defwidget minapp[]
+  (systray
+    :class "workspace"
+    :spacing 13
+    :orientation "h"
+    :space-evenly false
+    :icon-size 14
+    :prepend-new true
+  ))
+
+; Bar Window
+(defwindow bar
+  :monitor 0
+  :geometry (geometry 
+    :height "52px" 
+    :anchor "top left"
+  )
+  :stacking "fg"
+  :windowtype "dock"
+  :wm-ignore false
+  (bar)
+)
+(defwindow clock 
+  :monitor 0
+  
+  :geometry (geometry
+             :width "600px"
+             :height "200px"
+             :anchor "center bottom"
+             )
+  :stacking "bg"
+  :windowtype "dock"
+  :wm-ignore true
+  (clock))
+
