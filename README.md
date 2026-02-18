@@ -78,7 +78,7 @@ yay -S eww clipmenu vibrant-cli
 
 ```bash
 # JetBrainsMono Nerd Font
-yay -S nerd-fonts-jetbrains-mono
+yay -S ttf-jetbrains-mono-nerd
 
 # Plus Jakarta Sans
 yay -S ttf-plus-jakarta-sans
